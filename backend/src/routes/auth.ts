@@ -21,7 +21,7 @@ router.post("/signup", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.COOKIE_SECURE === "true",
+      secure: true,
       sameSite: "none",
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
@@ -55,8 +55,8 @@ router.post("/login", async (req, res) => {
     const token = signToken({ id: user._id, role: user.role });
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.COOKIE_SECURE === "true",
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
