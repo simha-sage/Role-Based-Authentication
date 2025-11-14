@@ -1,6 +1,7 @@
 // frontend/app/dashboard/page.tsx
 "use client";
 import { useEffect, useState } from "react";
+import UserManagement from "../components/userManagement";
 
 type User = { id: string; name: string; email: string; role: string };
 
@@ -60,8 +61,9 @@ export default function DashboardPage() {
         <div className="mt-6 p-4 bg-gray-50 rounded border">
           <h2 className="font-medium">Admin area</h2>
           <p className="text-sm text-gray-600">
-            You can add admin-specific UI here.
+            Admin can change role of users or delete users.
           </p>
+          <UserManagement />
         </div>
       )}
     </div>

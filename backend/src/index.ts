@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth";
+import userRoutes from "./routes/users";
 import cors from "cors";
 
 dotenv.config();
@@ -22,6 +23,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT || 4000;
 
