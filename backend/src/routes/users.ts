@@ -1,14 +1,9 @@
-// routes/users.ts
 import { Router } from "express";
 import User from "../models/User";
 import { authMiddleware } from "../middleware/auth";
-import { adminMiddleware } from "../middleware/adminAuth"; // <-- Import admin middleware
+import { adminMiddleware } from "../middleware/adminAuth";
 
 const router = Router();
-
-// --- PROTECT ALL ROUTES IN THIS FILE ---
-// All routes defined below will first check for a valid token,
-// then check if the user is an admin.
 router.use(authMiddleware, adminMiddleware);
 
 // GET /api/users - Get all users

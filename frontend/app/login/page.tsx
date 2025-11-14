@@ -8,7 +8,6 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  // ... other state ...
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -17,13 +16,12 @@ export default function LoginPage() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // This is correct!
+        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
       if (res.ok) {
-        // 3. Use router.push() instead of window.location
         router.push("/dashboard");
       } else {
         alert(data.message || "Login failed");

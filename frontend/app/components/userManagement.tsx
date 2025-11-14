@@ -1,7 +1,5 @@
-// components/UserManagement.tsx
 import { useState, useEffect } from "react";
 
-// Define a type for the user object
 interface User {
   _id: string;
   name: string;
@@ -9,12 +7,10 @@ interface User {
   role: "user" | "admin";
 }
 
-// Helper function to make authenticated API calls
-// You should have a central place for this, maybe using Axios
 async function fetchWithAuth(url: string, options: RequestInit = {}) {
   return fetch(url, {
     ...options,
-    credentials: "include", // <-- This is crucial!
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       ...options.headers,
@@ -85,8 +81,6 @@ export default function UserManagement() {
     }
   };
 
-  // Handle user update (Simplified: just an example)
-  // Handle user update (Simplified: just an example)
   const handleRoleChange = async (userId: string, newRole: string) => {
     // 1. Get the name of the user for a better prompt
     const user =
@@ -100,15 +94,11 @@ export default function UserManagement() {
         `Are you sure you want to change ${userName}'s role to ${newRole}?`
       )
     ) {
-      // 3. If they cancel, reset the dropdown visually
-      // This is tricky because the <select> value is controlled by component state.
-      // We need to force a re-render to snap the <select> back to its original value.
       setUsers([...users]);
       setAdmins([...admins]);
       return; // Stop the function
     }
 
-    // --- If they clicked "OK", proceed with the update ---
     try {
       // This hits your new PUT /api/users/:id endpoint
       const res = await fetchWithAuth(
@@ -122,11 +112,6 @@ export default function UserManagement() {
 
       const updatedUser = (await res.json()) as User;
 
-      // This logic is now more complex because the user might change from 'user' to 'admin'
-      // It's safer to just refetch the data or handle the state update carefully.
-
-      // --- Better state update logic ---
-      // Remove the user from both lists
       const otherUsers = users.filter((u) => u._id !== userId);
       const otherAdmins = admins.filter((a) => a._id !== userId);
 

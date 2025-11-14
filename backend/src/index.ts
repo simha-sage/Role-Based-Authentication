@@ -19,7 +19,6 @@ const corsOptions = {
   optionsSuccessStatus: 200, // For legacy browser support
 };
 
-// Use the CORS middleware
 app.use(cors(corsOptions));
 
 app.use("/auth", authRoutes);

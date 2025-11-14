@@ -9,8 +9,6 @@ export async function authMiddleware(
 ) {
   try {
     const authHeader = req.headers.authorization;
-    // try Authorization header first, then req.cookies (if cookie-parser is used),
-    // then fallback to parsing the raw Cookie header
     let token =
       authHeader && authHeader.startsWith("Bearer ")
         ? authHeader.split(" ")[1]
