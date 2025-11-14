@@ -14,6 +14,7 @@ const corsOptions = {
   origin:
     process.env.CLIENT_ORIGIN ||
     "https://role-based-authentication-apmqn9oy2.vercel.app",
+  credentials: true,
   optionsSuccessStatus: 200, // For legacy browser support
 };
 
